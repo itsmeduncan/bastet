@@ -13,8 +13,9 @@ Goddess associated with war, protection of Lower Egypt and the pharaoh, the sun,
     $bastet.activate(:crazy_feature, current_user)
     $bastet.active?(:crazy_feature, current_user) #=> true
 
-    $bastet.activate(:scary_feature, :admins)
     $bastet.active?(:scary_feature, :admins) #=> false
+    $bastet.activate(:scary_feature, :admins)
+    $bastet.active?(:scary_feature, :admins) #=> true
 
 ## Contibuting
 
