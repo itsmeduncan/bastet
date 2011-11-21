@@ -2,6 +2,10 @@
 
 Goddess associated with war, protection of Lower Egypt and the pharaoh, the sun, perfumes, ointments and embalming
 
+## Gemfile
+
+    gem "bastet", "~> 0.0.1"
+
 ## Configuration
 
     redis = Redis.new
