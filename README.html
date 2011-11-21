@@ -1,0 +1,27 @@
+<h1>Bastet - The unstable beast</h1>
+
+<p>Goddess associated with war, protection of Lower Egypt and the pharaoh, the sun, perfumes, ointments and embalming</p>
+
+<h2>Configuration</h2>
+
+<pre><code>redis = Redis.new
+$bastet = Bastet::Base.new(redis)
+</code></pre>
+
+<h2>Usage</h2>
+
+<pre><code>$bastet.activate(:crazy_feature, current_user)
+$bastet.active?(:crazy_feature, current_user) #=&gt; true
+
+$bastet.activate(:scary_feature, :admins)
+$bastet.active?(:scary_feature, :admins) #=&gt; false
+</code></pre>
+
+<h2>Contibuting</h2>
+
+<ol>
+<li>Fork Basteet</li>
+<li>Create a topic branch - <code>git checkout -b my_branch</code></li>
+<li>Push to your branch - <code>git push origin my_branch</code></li>
+<li>Create a pull request from your branch</li>
+</ol>
