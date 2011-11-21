@@ -18,6 +18,8 @@ Goddess associated with war, protection of Lower Egypt and the pharaoh, the sun,
 
 ## Contibuting
 
+[![Build Status](https://secure.travis-ci.org/itsmeduncan/bastet.png)](http://travis-ci.org/itsmeduncan/bastet)
+
 1. Fork Basteet
 2. Create a topic branch - `git checkout -b my_branch`
 3. Push to your branch - `git push origin my_branch`
