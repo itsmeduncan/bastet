@@ -5,8 +5,7 @@ Goddess associated with war, protection of Lower Egypt and the pharaoh, the sun,
 ## Configuration
 
     redis = Redis.new
-    $bastet = Bastet::Base.new(redis)
-
+    $bastet = Bastet.setup(redis)
 
 ## Usage
 
