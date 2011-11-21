@@ -16,6 +16,13 @@ Goddess associated with war, protection of Lower Egypt and the pharaoh, the sun,
     $bastet.activate(:scary_feature, :admins)
     $bastet.active?(:scary_feature, :admins) #=> true
 
+## TODO
+
+1. Support activating/deactivating features for groups/users
+2. Support activating/deactivating for multiple users/groups at once
+3. Percentage support
+4. Logging
+
 ## Contibuting
 
 [![Build Status](https://secure.travis-ci.org/itsmeduncan/bastet.png)](http://travis-ci.org/itsmeduncan/bastet)
