@@ -1,9 +1,19 @@
-require "bastet/version"
+require 'bastet/version'
+require 'bastet/base'
+require 'bastet/group'
 
 module Bastet
-  autoload "Base", "bastet/base"
+  class << self
+    def redis
+      @@redis
+    end
 
-  def self.setup redis
-    Bastet::Base.new(redis)
+    def redis=(redis)
+      @@redis = redis
+    end
+
+    def setup(redis)
+      Bastet::Base.new(redis)
+    end
   end
 end

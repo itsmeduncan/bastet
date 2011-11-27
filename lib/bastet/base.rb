@@ -2,7 +2,7 @@ class Bastet::Base
   attr_accessor :redis
 
   def initialize redis
-    @redis = redis
+    @redis = Bastet.redis = redis
   end
 
   def activate feature, target
@@ -36,7 +36,7 @@ class Bastet::Base
     end
 
     def val target
-     instance?(target) ? target.id : target.to_s
+      instance?(target) ? target.id : target.to_s
     end
 
     def namespace target

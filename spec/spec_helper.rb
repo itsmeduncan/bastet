@@ -9,4 +9,12 @@ Bundler.setup
 
 RSpec.configure do |config|
   config.mock_with :mocha
+
+  config.before(:each) do
+    @redis = Redis.new
+  end
+
+  config.after(:each) do
+    @redis.flushdb
+  end
 end

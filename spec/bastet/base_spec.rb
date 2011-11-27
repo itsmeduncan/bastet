@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Bastet::Base do
   before do
-    @redis = Redis.new
     @bastet = Bastet::Base.new(@redis)
   end
 
