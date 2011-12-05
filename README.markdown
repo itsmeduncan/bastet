@@ -7,7 +7,7 @@
 ## Configuration
 
     redis = Redis.new
-    $bastet = Bastet.setup(redis)
+    bastet = Bastet.setup(redis) #=> Bastet::Base.instance ...
 
 ## Usage
 
@@ -22,10 +22,9 @@
 
 ## To do
 
-1. Support activating/deactivating all features for groups/users
-2. Support activating/deactivating for multiple users/groups at once
-3. Percentage support
-4. Logging
+1. Support activating/deactivating for multiple users/groups at once
+2. Percentage support
+3. Logging
 
 ## Contibuting
 
