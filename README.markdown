@@ -1,4 +1,4 @@
-# Bastet - The group based feature rollout beast
+# Bastet - The criteria based feature rollout beast
 
 ## Gemfile
 
@@ -11,11 +11,18 @@
 
 ## Usage
 
+### Activate
+
     group = Bastet::Group.new('admin_users') { |user| user.admin? }
     bastet.activate("admin_only_feature", group)
 
+### Test
+
     user = User.new(admin: true)
     bastet.active?("admin_only_feature", user) #=> true
+
+
+### Deactivate
 
     bastet.deactivate("admin_only_feature", group)
     bastet.inactive?("admin_only_feature", user) #=> true
