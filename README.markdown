@@ -1,10 +1,8 @@
-# Bastet - The unstable beast
-
-Goddess associated with war, protection of Lower Egypt and the pharaoh, the sun, perfumes, ointments and embalming
+# Bastet - The group based feature rollout beast
 
 ## Gemfile
 
-    gem "bastet", "~> 0.0.1"
+    gem "bastet"
 
 ## Configuration
 
@@ -13,12 +11,14 @@ Goddess associated with war, protection of Lower Egypt and the pharaoh, the sun,
 
 ## Usage
 
-    $bastet.activate(:crazy_feature, current_user)
-    $bastet.active?(:crazy_feature, current_user) #=> true
+  group = Bastet::Group.new('admin_users') { |user| user.admin? }
+  bastet.activate("admin_only_feature", group)
 
-    $bastet.active?(:scary_feature, :admins) #=> false
-    $bastet.activate(:scary_feature, :admins)
-    $bastet.active?(:scary_feature, :admins) #=> true
+  user = User.new(admin: true)
+  bastet.active?("admin_only_feature", user) #=> true
+
+  bastet.deactivate("admin_only_feature", group)
+  bastet.inactive?("admin_only_feature", user) #=> true
 
 ## To do
 
