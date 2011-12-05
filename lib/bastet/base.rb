@@ -1,20 +1,18 @@
-class Bastet::Base
-  attr_accessor :redis
+require 'singleton'
 
-  def initialize redis
-    @redis = Bastet.redis = redis
-  end
+class Bastet::Base
+  include Singleton
 
   def activate feature, group
-    @redis.sadd("feature_#{feature}", group.name)
+    Bastet.redis.sadd("feature_#{feature}", group.name)
   end
 
   def deactivate feature, group
-    @redis.srem("feature_#{feature}", group.name)
+    Bastet.redis.srem("feature_#{feature}", group.name)
   end
 
   def active? feature, entity
-    group_names = @redis.smembers("feature_#{feature}")
+    group_names = Bastet.redis.smembers("feature_#{feature}")
     groups = Bastet.groups.select { |group| group_names.include?(group.name) }
     groups.any? { |group| group.criteria.call(entity) }
   end

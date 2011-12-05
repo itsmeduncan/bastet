@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Bastet do
   describe "::setup" do
     it "should return a new Bastet::Base object" do
-      Bastet.setup(@redis).should be_a(Bastet::Base)
+      Bastet.setup(@redis).should == Bastet::Base.instance
     end
   end
 

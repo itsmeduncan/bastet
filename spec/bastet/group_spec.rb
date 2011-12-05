@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Bastet::Group do
   before do
-    @bastet = Bastet::Base.new(@redis)
+    @bastet = Bastet.setup(@redis)
   end
 
   describe "initializer" do

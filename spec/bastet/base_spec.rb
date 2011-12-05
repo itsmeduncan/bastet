@@ -2,13 +2,7 @@ require 'spec_helper'
 
 describe Bastet::Base do
   before do
-    @bastet = Bastet::Base.new(@redis)
-  end
-
-  describe "initialization" do
-    it "should configure the Redis instance" do
-      Bastet::Base.new(@redis).redis.should == @redis
-    end
+    @bastet = Bastet.setup(@redis)
   end
 
   describe "activate" do

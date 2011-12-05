@@ -17,7 +17,8 @@ module Bastet
     end
 
     def setup(redis)
-      Bastet::Base.new(redis)
+      self.redis = redis
+      Bastet::Base.instance
     end
   end
 end
