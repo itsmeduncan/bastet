@@ -22,10 +22,8 @@ class Bastet::Group
   private
 
     def validate_name! name
-      if Bastet.redis.sismember('bastet_groups', name)
+      if Bastet::Group.find(name)
         raise ArgumentError.new("#{name} is already initialized as a group.")
-      else
-        Bastet.redis.sadd('bastet_groups', name)
       end
     end
 
