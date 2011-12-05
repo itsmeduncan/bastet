@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Duncan Grazier"]
   s.email       = ["itsmeduncan@gmail.com"]
   s.homepage    = "https://github.com/itsmeduncan/bastet"
-  s.summary     = %q{Simple feature rollout for users, and groups}
-  s.description = %q{Simple feature rollout for users, and groups}
+  s.summary     = %q{Simple feature rollout for criteria based groups}
+  s.description = %q{Simple feature rollout for criteria based groups}
 
   s.rubyforge_project = "bastet"
 
