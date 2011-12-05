@@ -72,5 +72,13 @@ describe Bastet::Group do
       group = Bastet::Group.new('none') { |entity| false }
       group.contains?(mock).should be_false
     end
+
+    it "should be false if the object doesn't respond to that criteria" do
+      fake = stub
+      fake.expects(:foo?).raises(NoMethodError)
+
+      group = Bastet::Group.new('foo') { |entity| entity.foo? }
+      group.contains?(fake).should be_false
+    end
   end
 end

@@ -16,7 +16,7 @@ class Bastet::Group
   end
 
   def contains? entity
-    criteria.call(entity)
+    criteria.call(entity) rescue false
   end
 
   private
