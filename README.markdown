@@ -1,4 +1,4 @@
-# Bastet - The criteria based feature rollout beast
+# Bastet - The criteria based feature rollout beast [![Build Status](https://secure.travis-ci.org/itsmeduncan/bastet.png)](http://travis-ci.org/itsmeduncan/bastet)
 
 ## Gemfile
 
@@ -27,15 +27,13 @@
     bastet.deactivate("admin_only_feature", group)
     bastet.inactive?("admin_only_feature", user) #=> true
 
-## To do
+## To Do
 
 1. Support activating/deactivating for multiple users/groups at once
 2. Percentage support
 3. Logging
 
 ## Contibuting
-
-[![Build Status](https://secure.travis-ci.org/itsmeduncan/bastet.png)](http://travis-ci.org/itsmeduncan/bastet)
 
 1. Fork Basteet
 2. Create a topic branch - `git checkout -b my_branch`
