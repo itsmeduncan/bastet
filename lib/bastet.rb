@@ -12,6 +12,10 @@ module Bastet
       @@redis = redis
     end
 
+    def groups
+      @@groups ||= []
+    end
+
     def setup(redis)
       Bastet::Base.new(redis)
     end

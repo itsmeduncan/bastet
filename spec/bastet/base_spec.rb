@@ -12,38 +12,25 @@ describe Bastet::Base do
   end
 
   describe "activate" do
-    it "should activate the :banana for the user" do
-      user = mock('user')
-      user.expects(:id).at_least(2).returns(100)
-
-      @bastet.activate(:banana, user)
-      @bastet.active?(:banana, user).should be_true
-    end
-
     it "should activate the :banana for the group" do
-      @bastet.activate(:banana, :admins)
-      @bastet.active?(:banana, :admins).should be_true
+      group = Bastet::Group.new("admins") { |entity| entity.admin? }
+      user = mock('user', admin?: true)
+
+      @bastet.activate(:banana, group)
+      @bastet.active?(:banana, user).should be_true
     end
   end
 
   describe "deactivate" do
-    it "should deactivate the :banana for the user" do
-      user = mock('user')
-      user.expects(:id).at_least(2).returns(100)
+    it "should deactive :banana for the group" do
+      group = Bastet::Group.new("admins") { |entity| entity.admin? }
+      user = mock('user', admin?: true)
 
-      @bastet.activate(:banana, user)
+      @bastet.activate(:banana, group)
       @bastet.active?(:banana, user).should be_true
 
-      @bastet.deactivate(:banana, user)
+      @bastet.deactivate(:banana, group)
       @bastet.inactive?(:banana, user).should be_true
-    end
-
-    it "should deactivate the :banana for the group" do
-      @bastet.activate(:banana, :admins)
-      @bastet.active?(:banana, :admins).should be_true
-
-      @bastet.deactivate(:banana, :admins)
-      @bastet.inactive?(:banana, :admins).should be_true
     end
   end
 end

@@ -1,39 +1,31 @@
 class Bastet::Group
-  attr_accessor :name
+  attr_accessor :name, :criteria
 
-  def initialize name
-    @name = name.to_sym
+  def initialize name, &block
+    raise ArgumentError.new("Need to pass a criteria") unless block_given?
+    validate_name!(name.to_s)
+
+    @name = name.to_s
+    @criteria = block
+
+    persist!
   end
 
-  def self.find name
-    new(name)
-  end
-
-  def add entity
-    Bastet.redis.sadd(name, entity_identifier(entity))
-  end
-  alias_method :<<, :add
-
-  def remove entity
-    Bastet.redis.srem(name, entity_identifier(entity))
-  end
-
-  def contain? entity
-    Bastet.redis.sismember(name, entity_identifier(entity))
-  end
-  alias_method :exist?, :contain?
-
-  def count
-    Bastet.redis.scard name
+  def contains? entity
+    criteria.call(entity)
   end
 
   private
 
-    def entity_identifier(entity)
-      entity.respond_to?(:id) ? "#{class_name(entity)}_#{entity.id}" : entity.to_s
+    def validate_name! name
+      if Bastet.redis.sismember('bastet_groups', name)
+        raise ArgumentError.new("#{name} is already initialized as a group.")
+      else
+        Bastet.redis.sadd('bastet_groups', name)
+      end
     end
 
-    def class_name(entity)
-      name.class.name.downcase
+    def persist!
+      Bastet.groups << self
     end
 end

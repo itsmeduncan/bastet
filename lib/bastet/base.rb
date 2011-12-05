@@ -5,45 +5,21 @@ class Bastet::Base
     @redis = Bastet.redis = redis
   end
 
-  def activate feature, target
-    act :sadd, feature, target
+  def activate feature, group
+    @redis.sadd("feature_#{feature}", group.name)
   end
 
-  def deactivate feature, target
-    act :srem, feature, target
+  def deactivate feature, group
+    @redis.srem("feature_#{feature}", group.name)
   end
 
-  def active? feature, target
-    act :sismember, feature, target
+  def active? feature, entity
+    group_names = @redis.smembers("feature_#{feature}")
+    groups = Bastet.groups.select { |group| group_names.include?(group.name) }
+    groups.any? { |group| group.criteria.call(entity) }
   end
 
-  def inactive? feature, target
-    !active? feature, target
+  def inactive? feature, entity
+    !active? feature, entity
   end
-
-  private
-
-    def act method, feature, target
-      @redis.send(method, key(feature, target), val(target))
-    end
-
-    def key feature, target
-      [].tap do |key|
-        key << "feature"
-        key << feature.to_s
-        key << namespace(target)
-      end.join(":")
-    end
-
-    def val target
-      instance?(target) ? target.id : target.to_s
-    end
-
-    def namespace target
-      instance?(target) ? "users" : "groups"
-    end
-
-    def instance? target
-      target.respond_to?(:id)
-    end
 end
