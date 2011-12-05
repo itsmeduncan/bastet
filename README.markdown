@@ -11,14 +11,14 @@
 
 ## Usage
 
-  group = Bastet::Group.new('admin_users') { |user| user.admin? }
-  bastet.activate("admin_only_feature", group)
+    group = Bastet::Group.new('admin_users') { |user| user.admin? }
+    bastet.activate("admin_only_feature", group)
 
-  user = User.new(admin: true)
-  bastet.active?("admin_only_feature", user) #=> true
+    user = User.new(admin: true)
+    bastet.active?("admin_only_feature", user) #=> true
 
-  bastet.deactivate("admin_only_feature", group)
-  bastet.inactive?("admin_only_feature", user) #=> true
+    bastet.deactivate("admin_only_feature", group)
+    bastet.inactive?("admin_only_feature", user) #=> true
 
 ## To do
 
