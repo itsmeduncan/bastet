@@ -11,6 +11,10 @@ class Bastet::Group
     persist!
   end
 
+  def self.find name
+    Bastet.groups.detect { |group| group.name == name }
+  end
+
   def contains? entity
     criteria.call(entity)
   end

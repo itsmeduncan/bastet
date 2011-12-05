@@ -16,6 +16,10 @@ module Bastet
       @@groups ||= []
     end
 
+    def groups=(groups)
+      @@groups = groups
+    end
+
     def setup(redis)
       self.redis = redis
       Bastet::Base.instance

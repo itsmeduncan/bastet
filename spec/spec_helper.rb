@@ -16,5 +16,6 @@ RSpec.configure do |config|
 
   config.after(:each) do
     @redis.flushdb
+    Bastet.groups = []
   end
 end

@@ -40,6 +40,18 @@ describe Bastet::Group do
     end
   end
 
+  describe "::find" do
+    it "should find the so-named group" do
+      group = Bastet::Group.new("find_me") {}
+      Bastet::Group.find("find_me").should == group
+    end
+
+    it "should return nil when the so-named group doesn't exist" do
+      group = Bastet::Group.new("cant_find_me") {}
+      Bastet::Group.find("find_me").should be_nil
+    end
+  end
+
   describe "contains?" do
     it "should be true if the criteria matches" do
       group = Bastet::Group.new('admins_only') { |entity| entity.admin? }
