@@ -27,6 +27,13 @@
     bastet.deactivate("admin_only_feature", group)
     bastet.inactive?("admin_only_feature", user) #=> true
 
+### Criteria
+
+    Bastet::Group.new('all') { true } # true for everyone
+    Bastet::Group.new('none') { false } # false for everyone
+    Bastet::Group.new('admins') { |user| user.admin? } # True for entities that respond to #admin? with true
+    Bastet::Group.new('10_percent') { |user| (entity.id % 10) < (20 / 10) } # True for 20% of entities based on the id
+
 ## To Do
 
 1. Support activating/deactivating for multiple users/groups at once
